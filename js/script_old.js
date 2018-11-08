@@ -57,8 +57,9 @@ function selectPlane() {
 }
 */
 
-function pan(ev) {
-  console.log("click pan");
+function onClickPlane(ev) {
+  //
+  console.log("click onClickPlane");
   console.log("ev = ", ev);
   console.log("Planes = ", Planes);
 
@@ -131,7 +132,7 @@ function fetchData() {
           Planes[plane.hex].lat = plane.lat;
           Planes[plane.hex].flight = plane.flight;
           Planes[plane.hex].hex = plane.hex;
-          L.DomEvent.addListener(Planes[plane.hex], "click", pan);
+          L.DomEvent.addListener(Planes[plane.hex], "click", onClickPlane);
           //refreshSelectedInfo();
           if (Planes[plane.hex].hex == Selected) refreshSelectedInfo();
 
@@ -158,7 +159,7 @@ function fetchData() {
 
         Planes[plane.hex].addTo(Map);
 
-        L.DomEvent.addListener(Planes[plane.hex], "click", pan);
+        L.DomEvent.addListener(Planes[plane.hex], "click", onClickPlane);
 
         if (plane.flight.length == 0) {
           //marker.setTitle(plane.hex);
