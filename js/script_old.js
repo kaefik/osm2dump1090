@@ -66,7 +66,6 @@ function pan(ev) {
 
   if (!Planes[this.planehex]) return;
   var old = Selected;
-  е;
   Selected = this.planehex;
   if (Planes[old]) {
     /* Remove the highlight in the previously selected plane. */
