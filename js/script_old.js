@@ -17,9 +17,19 @@ var LeafIcon = L.Icon.extend({
     popupAnchor: [0, -30]
   }
 });
+
 //определяем файл с изображением для каждого из видов иконок
 var aircraft_left = new LeafIcon({ iconUrl: "img/aircraft_left.png" });
 var aircraft_right = new LeafIcon({ iconUrl: "img/aircraft_right.png" });
+
+function getDirectionPlane([newLat, newLong], [oldLat, oldLong]) {
+  if (newLong > oldLong) {
+    return aircraft_right;
+  } else {
+    return aircraft_left;
+  }
+}
+
 //L.marker([55.77339, 49.22098], { icon: aircraft }).addTo(map);
 
 console.log("script_old");
@@ -43,19 +53,6 @@ function getIconForPlane(plane) {
     rotation: plane.track
   };
 }
-/*
-function selectPlane() {
-  if (!Planes[this.planehex]) return;
-  var old = Selected;
-  Selected = this.planehex;
-  if (Planes[old]) {
-    
-    Planes[old].marker.setIcon(getIconForPlane(Planes[old]));
-  }
-  Planes[Selected].marker.setIcon(getIconForPlane(Planes[Selected]));
-  refreshSelectedInfo();
-}
-*/
 
 function onClickPlane(ev) {
   //
@@ -122,7 +119,10 @@ function fetchData() {
           );
           Planes[plane.hex].removeFrom(Map);
           Planes[plane.hex] = new L.marker([plane.lat, plane.lon], {
-            icon: aircraft_left
+            icon: getDirectionPlane(
+              [plane.lat, plane.lon],
+              [myplane.lat, myplane.lon]
+            )
           });
           Planes[plane.hex].altitude = plane.altitude;
           Planes[plane.hex].planehex = plane.hex;
