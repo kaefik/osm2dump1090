@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+     
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+
+    <link rel="stylesheet" href="dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript"  src="dist/leaflet.js"></script>
+    <script type="text/javascript" src="dist/Leaflet.MovingMarker/MovingMarker.js"></script>
+
+
+    
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+    <div id="info">
+      <div>
+        <h1>Dump1090</h1>
+        <p id="geninfo"></p>
+        <p id="selinfo">Click on a plane for info.</p>
+      </div>
+    </div>
+
+    <script  src="js/script_old.js">
+    </script>
+    <script>
+      initialize();
+    </script>
+  </body>
+</html>
+
+<!--
+  запускаем dump1090 --net
+  данные получаются из http://localhost:8080/data.json
+-->
